@@ -20,7 +20,6 @@ class Order extends Model
         'type',
         'payment',
         'count',
-        'address',
         'furniture_id',
         'user_id',
     ];

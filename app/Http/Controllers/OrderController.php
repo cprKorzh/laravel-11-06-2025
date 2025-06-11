@@ -15,6 +15,10 @@ class OrderController extends Controller
      */
     public function showOrderForm()
     {
+        if (Auth::user()->isAdmin()) {
+            return redirect()->route('admin.orders')->with('error', 'Администраторы не могут создавать заявки');
+        }
+        
         $furnitures = Furniture::all();
         return view('orders.create', compact('furnitures'));
     }
@@ -24,13 +28,16 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        if (Auth::user()->isAdmin()) {
+            return redirect()->route('admin.orders')->with('error', 'Администраторы не могут создавать заявки');
+        }
+        
         $validator = Validator::make($request->all(), [
             'furniture_id' => 'required|exists:furnitures,id',
             'count' => 'required|integer|min:1|max:10',
             'date' => 'required|date|after_or_equal:today',
             'time' => 'required',
             'payment' => 'required|in:cash,card,bank_transfer',
-            'address' => 'required|string|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -47,7 +54,6 @@ class OrderController extends Controller
             'date' => $request->date,
             'time' => $request->time,
             'payment' => $request->payment,
-            'address' => $request->address,
             'type' => $furniture->title,
             'user_id' => Auth::id(),
         ]);

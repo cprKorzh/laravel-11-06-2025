@@ -33,12 +33,14 @@
                             <a class="nav-link" href="{{ route('home') }}">Главная</a>
                         </li>
                         @auth
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('orders.create') }}">Подать заявку</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('profile.orders') }}">Мои заявки</a>
-                            </li>
+                            @if(!Auth::user()->isAdmin())
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('orders.create') }}">Подать заявку</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('profile.orders') }}">Мои заявки</a>
+                                </li>
+                            @endif
                             @if(Auth::user()->isAdmin())
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.orders') }}">Панель администратора</a>

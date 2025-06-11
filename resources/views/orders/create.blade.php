@@ -44,18 +44,6 @@
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="address" class="col-md-4 col-form-label text-md-end">Адрес</label>
-                        <div class="col-md-6">
-                            <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required>
-                            @error('address')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="mb-3 row">
                         <label for="date" class="col-md-4 col-form-label text-md-end">Дата ремонта</label>
                         <div class="col-md-6">
                             <input id="date" type="date" class="form-control @error('date') is-invalid @enderror" name="date" value="{{ old('date') }}" required>

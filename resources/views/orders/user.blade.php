@@ -8,13 +8,18 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <span>Мои заявки</span>
-                <a href="{{ route('orders.create') }}" class="btn btn-sm btn-primary">Создать новую заявку</a>
+                @if(!Auth::user()->isAdmin())
+                    <a href="{{ route('orders.create') }}" class="btn btn-sm btn-primary">Создать новую заявку</a>
+                @endif
             </div>
 
             <div class="card-body">
                 @if($orders->isEmpty())
                     <div class="alert alert-info">
-                        У вас пока нет заявок. <a href="{{ route('orders.create') }}">Создать заявку</a>
+                        У вас пока нет заявок. 
+                        @if(!Auth::user()->isAdmin())
+                            <a href="{{ route('orders.create') }}">Создать заявку</a>
+                        @endif
                     </div>
                 @else
                     <div class="table-responsive">
@@ -24,7 +29,6 @@
                                     <th>№</th>
                                     <th>Тип мебели</th>
                                     <th>Количество</th>
-                                    <th>Адрес</th>
                                     <th>Дата и время</th>
                                     <th>Способ оплаты</th>
                                     <th>Сумма</th>
@@ -37,7 +41,6 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $order->type }}</td>
                                         <td>{{ $order->count }}</td>
-                                        <td>{{ $order->address }}</td>
                                         <td>{{ \Carbon\Carbon::parse($order->date)->format('d.m.Y') }} в {{ \Carbon\Carbon::parse($order->time)->format('H:i') }}</td>
                                         <td>
                                             @if($order->payment == 'cash')

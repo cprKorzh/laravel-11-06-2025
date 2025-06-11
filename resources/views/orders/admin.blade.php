@@ -22,7 +22,6 @@
                                     <th>ФИО заявителя</th>
                                     <th>Телефон</th>
                                     <th>Email</th>
-                                    <th>Адрес</th>
                                     <th>Тип мебели</th>
                                     <th>Количество</th>
                                     <th>Дата и время</th>
@@ -38,7 +37,6 @@
                                         <td>{{ $order->user->lastname }} {{ $order->user->firstname }} {{ $order->user->middlename }}</td>
                                         <td>{{ $order->user->tel }}</td>
                                         <td>{{ $order->user->email }}</td>
-                                        <td>{{ $order->address }}</td>
                                         <td>{{ $order->type }}</td>
                                         <td>{{ $order->count }}</td>
                                         <td>{{ \Carbon\Carbon::parse($order->date)->format('d.m.Y') }} в {{ \Carbon\Carbon::parse($order->time)->format('H:i') }}</td>

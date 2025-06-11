@@ -34,7 +34,12 @@
 
                 <div class="text-center">
                     @auth
-                        <a href="{{ route('orders.create') }}" class="btn btn-primary btn-lg">Подать заявку</a>
+                        @if(!Auth::user()->isAdmin())
+                            <a href="{{ route('orders.create') }}" class="btn btn-primary btn-lg">Подать заявку</a>
+                        @else
+                            <p>Администраторы могут только просматривать заявки</p>
+                            <a href="{{ route('admin.orders') }}" class="btn btn-primary">Просмотр заявок</a>
+                        @endif
                     @else
                         <p>Для подачи заявки необходимо авторизоваться</p>
                         <div class="d-flex justify-content-center gap-2">

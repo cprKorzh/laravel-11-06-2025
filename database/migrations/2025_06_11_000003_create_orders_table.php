@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('type');
             $table->string('payment');
             $table->integer('count');
-            $table->string('address');
             $table->unsignedBigInteger('furniture_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

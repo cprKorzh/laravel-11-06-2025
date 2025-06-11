@@ -1,5 +1,16 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
+Гуртенко Роман Николаевич - П-43с
+<img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />
+
+Запуск
+docker build -t demo .
+docker run -p 9000:80 demo
+
+Ссылка - https://laravel.gurtenkoserver.ru/
+
+Ресурс - https://github.com/cprKorzh/laravel-11-06-2025.git
+
 ## Запуск проекта
 
 Для запуска проекта на Laravel и автоматического развертывания базы данных необходимо воспользоваться утилитой (файл в корневой директории) `./run.sh`, используя терминал Git Bash.

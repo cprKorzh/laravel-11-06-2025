@@ -16,7 +16,9 @@
 
                 <div class="text-center mt-4">
                     <a href="{{ route('profile.orders') }}" class="btn btn-primary">Мои заявки</a>
-                    <a href="{{ route('orders.create') }}" class="btn btn-outline-primary ms-2">Создать новую заявку</a>
+                    @if(!Auth::user()->isAdmin())
+                        <a href="{{ route('orders.create') }}" class="btn btn-outline-primary ms-2">Создать новую заявку</a>
+                    @endif
                 </div>
             </div>
         </div>

@@ -31,10 +31,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     
     // Маршруты для заказов
-    Route::get('/orders/create', [OrderController::class, 'showOrderForm'])->name('orders.create');
-    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
-    Route::get('/orders/success/{order}', [OrderController::class, 'success'])->name('orders.success');
-    Route::get('/profile/orders', [OrderController::class, 'userOrders'])->name('profile.orders');
+    Route::middleware(['auth', 'user.role'])->group(function () {
+        Route::get('/orders/create', [OrderController::class, 'showOrderForm'])->name('orders.create');
+        Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+    });
+    
+    Route::middleware('auth')->group(function () {
+        Route::get('/orders/success/{order}', [OrderController::class, 'success'])->name('orders.success');
+        Route::get('/profile/orders', [OrderController::class, 'userOrders'])->name('profile.orders');
+    });
     
     // Маршруты для администратора
     Route::middleware('admin')->group(function () {
